@@ -1,0 +1,48 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.doshin.service.client'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+ext {
+	springCloudVersion = 'Edgware.SR1'
+}
+
+dependencies {
+	//register service to eureka service registery
+	compile('org.springframework.cloud:spring-cloud-starter-eureka')
+	//feign for declarative rest api
+	compile('org.springframework.cloud:spring-cloud-starter-feign')
+	//hystrix circuit braker 
+	compile('org.springframework.cloud:spring-cloud-starter-hystrix')
+	//zuul is the proxy to connect to the service through service registery
+	compile('org.springframework.cloud:spring-cloud-starter-zuul')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('com.google.guava:guava')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
