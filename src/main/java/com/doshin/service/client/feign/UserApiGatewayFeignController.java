@@ -25,7 +25,7 @@ public class UserApiGatewayFeignController {
 	
 	@HystrixCommand(fallbackMethod = "badResponse")
 	@RequestMapping(method = RequestMethod.GET, value= "/feignuserapigateway/{id}", produces = MediaType.APPLICATION_XML_VALUE)
-	String getUserById(@PathVariable String id) {
+	String feignUserApiGateway(@PathVariable String id) {
 		logger.info("Feignuserapigateway User service started for : "  +id );
 		String st = feignClient.getByUserId(id);
 		logger.info("Feignuserapigateway User service response : "  + st);

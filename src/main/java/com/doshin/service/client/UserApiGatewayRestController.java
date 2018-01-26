@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,8 +31,8 @@ public class UserApiGatewayRestController {
 
 
 
-	@RequestMapping(method = RequestMethod.GET, value= "/userapigateway/{id}")
-	String getUserById(@PathVariable String id) {
+	@RequestMapping(method = RequestMethod.GET, value= "/userapigateway/{id}", produces = MediaType.APPLICATION_XML_VALUE)
+	String userApiGateway(@PathVariable String id) {
 		logger.info("Userapigateway User service started for : "  +id );
 
 		String st = restTemplate.exchange("http://userservice/user/{id}", HttpMethod.GET, null, String.class, id).getBody();

@@ -37,6 +37,8 @@ dependencies {
 	//zuul is the proxy to connect to the service through service registery
 	compile('org.springframework.cloud:spring-cloud-starter-zuul')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	//for distributed tracing spi implemetation of sleuth
+	compile('org.springframework.cloud:spring-cloud-starter-zipkin')
 	compile('com.google.guava:guava')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
